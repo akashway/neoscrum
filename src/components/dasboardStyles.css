@@ -1,0 +1,111 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.dashboardBox{
+    justify-content: center;
+    width:90%;
+    margin:10px 20px 10px 60px;
+    box-sizing: border-box;
+}
+
+.dashboardHeader{
+    background-color:rgb(3, 252, 236);
+    height: 80px;
+    border:0.5px solid rgb(8, 226, 212);
+    border-radius: 3px;
+    display:grid;
+    grid-template-rows: 150x;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:30px;
+}
+
+.dashboardHeader .nameLogo{
+    padding: 8px;
+    color:black;
+    width:100%;
+    text-align: left;
+    font-size: 20px;
+}
+
+.dashboardHeader .logout{
+    padding: 18px 0px;
+    width:100%;
+    text-align: right;
+    font-size: 20px;
+}
+
+.feedbackGridBox{
+    background-color:white;
+    border:0.5px solid white;
+}
+
+.feedbackGrid{
+    background-color:white;
+    padding: 20px 10px 10px 10px;
+    width:98%;
+    height: 420px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    /* margin:50px; */
+    /* border:1px solid rgb(62, 69, 69); */
+    border-top:0.5px solid rgb(62, 69, 69);
+    color:white;
+    display:grid;
+    grid-template-rows: 190px 190px;
+    /* grid-template-rows: 150px 150px; */
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap:30px;
+    grid-column-gap:30px;
+
+}
+
+
+
+.one{
+    background-color:white;
+    box-shadow: 5px 5px rgb(109, 117, 117);
+    border:1px solid black;
+    border-radius: 3px;
+}
+
+.two{
+    
+    background-color:white;
+    box-shadow: 5px 5px rgb(109, 117, 117);
+    border:1px solid black;
+    border-radius: 3px;
+}
+
+.three{
+    
+    background-color:white;
+    box-shadow: 5px 5px rgb(109, 117, 117);
+    border:1px solid black;
+    border-radius: 3px;
+}
+
+.four{
+    
+    background-color:white;
+    box-shadow: 5px 5px rgb(109, 117, 117);
+    border:1px solid black;
+    border-radius: 3px;
+}
+
+.five{
+    
+    background-color:white;
+    box-shadow: 5px 5px rgb(109, 117, 117);
+    border:1px solid black;
+    border-radius: 3px;
+}
+
+.six{
+
+    background-color:white;
+    box-shadow: 5px 5px rgb(109, 117, 117);
+    border:1px solid black;
+    border-radius: 3px;
+}
