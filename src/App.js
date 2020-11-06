@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard'
 import SubmitDashboard from './components/SubmitDashboard'
 import { BrowserRouter as Router, Switch,Route} from 'react-router-dom';
 import ForgetPassword from './components/ForgetPassword';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (

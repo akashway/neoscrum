@@ -3,6 +3,8 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { Redirect } from 'react-router';
 import './ForgetPassword.js';
+import Button from 'react-bootstrap/Button'
+import * as ReactBootStrap from 'react-bootstrap'
 
 //Login Functional Component
 /**
@@ -22,11 +24,8 @@ function LoginPage(){
 
 
     const logo={
-        position:"fixed",
-        padding:"60px 60px 50px 45px",
         fontSize:"25px",
-        marginBottom:"50px",
-        left:"490px"
+        marginTop:"20px",
         
     }
     const firstHeading={
@@ -34,14 +33,12 @@ function LoginPage(){
     }
 
     const formBox={
-        position:"fixed",
         border:"1px solid rgb(209, 240, 235)",
-        width:"240px",
-        height:"360px",
-        marginLeft:"555px",
-        borderBottom: "1px solid rgb(76, 82, 80)",
-        top:"200px"
-
+        width:"300px",
+        height:"470px",
+        margin:"70px auto",
+        borderBottom:"1px solid rgb(76, 82, 80)",
+        boxSizing: "border-box"
 
     } 
 
@@ -66,16 +63,15 @@ function LoginPage(){
     }
 
     const buttonStyle={
-        backgroundColor:"rgb(123, 50, 168)",
-        position:"relative",
-        color:"white",
-        padding:"13px",
+        // backgroundColor:"rgb(123, 50, 168)",
+        // position:"relative",
+        // color:"white",
         float:"left",
-        marginLeft:"15px",
-        border:"1px solid rgb(123, 50, 168)",
-        borderRadius:"3px",
-        top:"40px",
-        left:"70px"
+        // border:"1px solid rgb(123, 50, 168)",
+        // borderRadius:"3px",
+        marginTop:"40px",
+        marginLeft:"110px",
+        marginBottom:"5px"
        
     }
 
@@ -203,8 +199,9 @@ function LoginPage(){
  * @returns Successful or Unsuccessful API Connection
  */ 
     
-    let count=0
-    const handleSubmit=(event) =>{
+    const [loading,setLoadingStatus]=useState(false)
+
+    const clickHandler=(event) =>{
         event.preventDefault();
         console.log("pogo")
         validationLogin()
@@ -218,12 +215,19 @@ function LoginPage(){
                 localStorage.setItem("email",response.data.user_email)
                 localStorage.setItem("success",response.data.success)
                 console.log("yes")
+                handleSubmit()
 
             }
-
-            
             )
-            count=count+1
+            .catch(error =>{
+                console.log(error)
+                setLoadingStatus(false)
+                alert("Enter Credential is wrong")
+
+            }
+            )
+
+            // count=count+1
                 // console.log(response)
             
 
@@ -231,18 +235,15 @@ function LoginPage(){
             //     console.lo   g("hello world")
             // }
 
-                if(count==2){
-                    if(!(localStorage.getItem("token"))){
+                // if(count==2){
+                //     if(!(localStorage.getItem("token"))){
 
-                        alert("Enter Credential is wrong")
-                    }
-                }
-
-
-                loginHandle()
+                //         alert("Enter Credential is wrong")
+                //     }
+                // }
 
                 console.log("yes")
-        
+                setLoadingStatus(true)
             
     
         }
@@ -260,7 +261,7 @@ function LoginPage(){
 
     
 
-        function loginHandle(){
+        function handleSubmit(){
             if(localStorage.token)
         {
             setLogin(true)
@@ -326,43 +327,42 @@ function LoginPage(){
 
                 <form onSubmit={handleSubmit}>
 
-
+                {!loading?
                     <div style={formBox}>
 
-                        <div  style={{marginBottom:"18px"}}>
+                        <div  style={{margin:"10px 0px"}}>
                             <h2>Login</h2>
                         </div>
  
-                        <div>
+                        <div style={{margin:"20px 23px 10px 24px"}}>
                             <input ref={emailRef} style={emailField} type="text" name="email" placeholder="Email*" value={values.email} onChange={handleChange} onBlur={handleEmailBlur}/>
                             <label ref={emailLabeleReqRef} style={{color:"red", display:"none",float:"left"}}>&nbsp;&nbsp;&nbsp;&nbsp;**Email Required</label> 
                             <label ref={emailLabeleProperRef}style={{color:"red", display:"none"}}>**Please Enter Proper Email id</label> 
                         </div>
 
-                        <div>
-                            <input ref={passwordRef} style={passwordField} type="text" name="password" placeholder="Password*" value={values.password} onChange={handleChange} onBlur={handlePassBlur}/>
+                        <div style={{margin:"20px 23px 10px 24px"}}>
+                            <input ref={passwordRef} style={passwordField} type="password" name="password" placeholder="Password*" value={values.password} onChange={handleChange} onBlur={handlePassBlur}/>
                             <label ref={passLabeleReqRef} style={{color:"red", display:"none",float:"left"}}>&nbsp;&nbsp;&nbsp;&nbsp;**password Required</label>
                             <label ref={passLabeleAlpaNumRef} style={{color:"red", display:"none"}}>**should contain Alpha Numeric no special chars</label>
                             <label ref={passLabeleLengthRef} style={{color:"red", display:"none"}}>**length between 8 and 13</label>  
                         </div>
 
                         <div>
-                                <button style={buttonStyle} type="submit">Login</button>
+                                <Button style={buttonStyle} variant="primary" onClick={clickHandler} type="submit">Login</Button>
                         </div>
 
-                        <div style={{position:"fixed",top:"500px",left:"579px"}}>
-                            <Link to="/forgetpassword" style={{textDecoration:"none"}}>
-                                <span style={{border:"1px solid rgb(123, 50, 168)",color:"white",backgroundColor:"rgb(123, 50, 168)"}}>Forgot password click here</span>
-                            </Link>
-                            <div style={{marginTop:"10px"}}>
-                                <Link to="" style={{textDecoration:"none"}}>
-                                    <span style={{border:"1px solid white",color:"white",backgroundColor:"green"}} >don't have Acc. Register here</span>
-                                </Link>
-                            </div>
-                        </div>
-
-
+                        <div style={{margin: "320px auto 0px", color:"blue"}}>
+                        <Link to="/" style={{textDecoration:"none"}}>
+                            <div style={{fontSize:"17px",color:"blue"}}>Do not have account click here</div>
+                        </Link>
+                        <Link to="/forgetpassword" style={{textDecoration:"none"}}>
+                            <div style={{fontSize:"17px",color:"blue",marginTop:"14px"}}>Forget Password click here</div>
+                        </Link>
+                        
                     </div>
+
+
+                    </div>:<div style={{margin:"250px auto"}}><ReactBootStrap.Spinner size="lg" animation="border"/></div>}
 
                 </form>
                 {localStorage.token ? <Redirect to='/dashboard'/> :<Redirect to='/dashboard'/>}

@@ -1,7 +1,8 @@
 import React,{ useState, useRef,useEffect } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router'
+import Button from 'react-bootstrap/Button'
 
 //Registration Functional Component
 /**
@@ -138,11 +139,9 @@ function RegistrationPage(){
     // }
 
     const logo={
-        position:"fixed",
-        padding:"60px 60px 50px 45px",
         fontSize:"25px",
-        marginBottom:"50px",
-        left:"490px"
+        marginTop:"20px",
+        
     }
 
     const firstHeading={
@@ -161,14 +160,12 @@ function RegistrationPage(){
     // } 
 
     const formBox={
-        position:"fixed",
         border:"1px solid rgb(209, 240, 235)",
-        width:"242px",
-        height:"358px",
-        marginLeft:"555px",
-        borderBottom: "1px solid rgb(76, 82, 80)",
-        top:"200px"
-
+        width:"300px",
+        height:"470px",
+        margin:"70px auto",
+        borderBottom:"1px solid rgb(76, 82, 80)",
+        boxSizing: "border-box"
 
     } 
 
@@ -193,16 +190,16 @@ function RegistrationPage(){
     }
 
     const buttonStyle={
-        backgroundColor:"rgb(123, 50, 168)",
-        color:"white",
-        padding:"13px",
+        // backgroundColor:"rgb(123, 50, 168)",
+        // color:"white",
+        // padding:"13px",
         float:"left",
         marginLeft:"15px",
-        border:"1px solid rgb(123, 50, 168)",
-        borderRadius:"3px",
-        marginTop:"60px",
-        marginLeft:"80px",
-        marginBottom:"0px"
+        // border:"1px solid rgb(123, 50, 168)",
+        // borderRadius:"3px",
+        marginTop:"70px",
+        marginLeft:"110px",
+        marginBottom:"8px"
     }
 
    
@@ -311,18 +308,18 @@ function RegistrationPage(){
                 <form onSubmit={handleSubmit}>
 
                     <div style={formBox}>
-                        <div style={{marginBottom:"10px"}}>
+                        <div style={{margin:"10px 0px"}}>
                             <h3>Enter New Developer</h3>
                         </div>
 
-                        <div>
+                        <div style={{margin:"20px 23px 10px 24px"}}>
                             <input ref={employeeNameRef} style={employeeNameField} type="text" name="employeeName" placeholder="Employee Name*" value={values.employeeName} onChange={handleChange} onBlur={handleNameBlur} />
                             <label ref={employeeLabeleReqRef} style={{color:"red", display:"none"}}>**Employee Name Required</label> 
                             <label ref={employeeLabeleNumericRef} style={{color:"red", display:"none"}}>**Numeric number not required</label>
                             <label ref={employeeLabeleSpcRef} style={{color:"red", display:"none"}}>**No special character req.</label> 
                         </div>
 
-                        <div>
+                        <div style={{margin:"20px 23px 10px 24px"}}>
                             <input ref={emailRef} style={emailField} type="text" name="email" placeholder="Email*" value={values.email} onChange={handleChange} onBlur={handleEmailBlur}/>
                             <label ref={emailLabeleReqRef}style={{color:"red",display:"none",float:"left"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Email Required</label> 
                             <label ref={emailLabeleProperRef}style={{color:"red", display:"none",float:"left"}}>**Please Enter Proper Email id</label> 
@@ -332,18 +329,17 @@ function RegistrationPage(){
                             <input type="file" />
                         </div> */}
 
-                            <div style={{position:"relative", top:"30px",left:"30px"}}>
+                        <span style={{position:"relative", top:"30px",left:"46px"}}>
                             <input type="file" id="myFile" name="filename"></input>
-                        </div>
+                        </span>
 
                         <div>
-                            {/* <Link to='/login'> */}
-                            <button style={buttonStyle} type="submit">Submit</button>
-                            {/* </Link> */}
+                            <Button style={buttonStyle} variant="primary"  type="submit">Submit</Button>
+                            
                         </div>
 
                         <div style={{position:"fixed",top:"525px",left:"565px"}}>
-                            <Link to="/login" style={{textDecoration:"none"}}>
+                            <Link to="/login" style={{textDecoration:"none",color:"blue"}}>
                                 <span >Already have account click here</span>
                             </Link>
                         </div>

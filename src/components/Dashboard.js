@@ -6,6 +6,7 @@ import 'moment-timezone';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 import Child from './Child'
+import Button from 'react-bootstrap/Button'
 
 //Dashboard Functional Component
 /**
@@ -19,21 +20,26 @@ function Dashboard(){
 
     
     const feedbackButtonStyle={
-        backgroundColor:"rgb(123, 50, 168)",
-        color:"white",
-        padding:"10px",
-        margin:"5px",
-        border:"1px solid rgb(123, 50, 168)",
-        borderRadius:"2px"
+        position:"absolute",
+            // backgroundColor:"rgb(123, 50, 168)",
+            // color:"white",
+            // padding:"10px",
+            // border:"1px solid rgb(123, 50, 168)",
+            // borderRadius:"2px",
+            top:"25px",
+            right:"190px"
     }
 
     const logoutButtonStyle={
-        backgroundColor:"red",
-        color:"white",
-        padding:"10px",
+        position:"absolute",
+        // backgroundColor:"red",
+        // color:"white",
+        // padding:"10px",
         margin:"5px",
-        border:"1px solid red",
-        borderRadius:"2px"
+        // border:"1px solid red",
+        // borderRadius:"2px",
+        top:"20px",
+        right:"80px"
     }
 
     const feedbackStyleOne={
@@ -165,28 +171,30 @@ function Dashboard(){
 
     return(
 
-        <div className="dashboardBox">
+            <div className="dashboardBox">
 
             <div className="dashboardHeader">
                 
                 <div className="nameLogo">
                 <img style={{width:"70px",height:"70px",borderRadius:"50px"}} src="https://image.shutterstock.com/image-photo/close-portrait-smiling-handsome-man-600w-1011569245.jpg" alt="Profile Photo"/ >
-                <span style={{position:"relative",left:"10px",bottom:"30px"}}>Akash Mishra</span>
+                <span style={{position:"relative",left:"10px",top:"0px"}}>Akash Mishra</span>
                 </div>
 
                 <div className="logout">
-                        <button style={feedbackButtonStyle} onClick={handleAddFeedback}>Add Feedback</button>
-                    <button style={logoutButtonStyle} onClick={handleToken}>Logout</button>
+                        <Button style={feedbackButtonStyle} variant="primary" size="lg" onClick={handleAddFeedback}>Add Feedback</Button>
+                        <Button style={logoutButtonStyle} variant="danger" size="lg" onClick={handleToken}>Logout</Button>
                 </div>
 
             </div>
-
+{/* 
             <div>
-                    {/* <h1>Hello</h1> */}
+                    <h1>Hello</h1>
                     <h1>{localStorage.feedbackResponse}</h1>
-            </div>
+            </div> */}
 
-            {<div className="feedbackGridBox">
+            {   !((localStorage.feedbackResponse)==="You have no feedback")  ?
+                
+                <div className="feedbackGridBox">
 
                 <div className="feedbackGrid">
                     <div className="one">
@@ -227,7 +235,7 @@ function Dashboard(){
 
                 </div>
 
-            </div> }
+            </div>:<div className="response"><h1>{(localStorage.feedbackResponse) }</h1></div> }
 
             { !(localStorage.token) ? <Redirect to='/login'/> :<Redirect to='/dashboard'/>}
             {!(localStorage.token) ? console.log("no token available") :console.log("yes token available") }

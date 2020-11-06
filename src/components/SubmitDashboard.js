@@ -1,8 +1,9 @@
 import React from 'react'
-import { useEffect,useState} from 'react'
+import { useEffect,useState, useRef} from 'react'
 import axios from 'axios'
 import './submitDashboardStyles.css';
 import { Redirect } from 'react-router';
+import Button from 'react-bootstrap/Button'
 
 //Add Dashboard Functional Component
 /**
@@ -15,56 +16,129 @@ import { Redirect } from 'react-router';
 function SubmitDashboard(){
 
 
+    const textOneRequiredRef= useRef(null)
+    const textTwoRequiredRef= useRef(null)
+    const textThreeRequiredRef= useRef(null)
+    const textOnelableRef= useRef(null)
+    const textTwolableRef= useRef(null)
+    const textThreelableRef= useRef(null)
+    const [values,setValues]=useState({textareaOne:"",textareaTwo:"",textareaThree:""})
+
+
     const logoutButtonStyleTwo={
-        backgroundColor:"red",
-        color:"white",
-        padding:"10px",
+        position:"absolute",
+        // backgroundColor:"red",
+        // color:"white",
+        // padding:"10px",
         marginRight:"20px",
-        border:"1px solid red",
-        borderRadius:"2px"
+        // border:"1px solid red",
+        // borderRadius:"2px",
+        top:"25px",
+        right:"40px"
     }
 
     const submitFeedbackStyleOneButton={
         position:"relative",
-        top:"10px",
-        left:"100px",
-        backgroundColor:"rgb(123, 50, 168)",
-        border:"2px solid rgb(123, 50, 168)",
-        borderRadius:"2px",
-        color:"white",
-        padding:"13px",
-        width:"160px"
+            top:"10px",
+            left:"67px",
+            // backgroundColor:"rgb(123, 50, 168)",
+            // border:"2px solid rgb(123, 50, 168)",
+            // borderRadius:"2px",
+            // color:"white",
+            // padding:"13px",
+            // width:"160px"
     }
 
     const submitFeedbackStyleTwoButton={
         position:"relative",
-        top:"10px",
-        left:"100px",
-        backgroundColor:"rgb(123, 50, 168)",
-        border:"2px solid rgb(123, 50, 168)",
-        borderRadius:"2px",
-        color:"white",
-        padding:"13px",
-        width:"160px"
+            top:"10px",
+            left:"67px",
+            // backgroundColor:"rgb(123, 50, 168)",
+            // border:"2px solid rgb(123, 50, 168)",
+            // borderRadius:"2px",
+            // color:"white",
+            // padding:"13px",
+            // width:"160px"
     }
 
     const submitFeedbackStyleThreeButton={
         position:"relative",
-        top:"10px",
-        left:"100px",
-        backgroundColor:"rgb(123, 50, 168)",
-        border:"2px solid rgb(123, 50, 168)",
-        borderRadius:"2px",
-        color:"white",
-        padding:"13px",
-        width:"160px"
+            top:"10px",
+            left:"67px",
+            // backgroundColor:"rgb(123, 50, 168)",
+            // border:"2px solid rgb(123, 50, 168)",
+            // borderRadius:"2px",
+            // color:"white",
+            // padding:"13px",
+            // width:"160px"
     }
 
     const submitFeedbackStyleTextarea={
 
-        marginTop:"90px"
+        marginTop:"65px",
+        marginBottom:"10px"
 
     }
+
+    const changeHandlerOne= (event) =>{
+    
+
+        setValues({
+            textareaOne:event.target.value
+        });
+
+    }
+
+    const changeHandlerTwo= (event) =>{
+    
+
+        setValues({
+            textareaTwo:event.target.value
+        });
+
+    }
+
+    const changeHandlerThree= (event) =>{
+    
+
+        setValues({
+            textareaThree:event.target.value
+        });
+
+    }
+
+
+
+    
+    function clickHandlerOne(){
+        if(values.textareaOne===""){
+            textOneRequiredRef.current.style.border="2px solid red"
+            textOnelableRef.current.style.display="block"
+        }
+        else{
+            textOneRequiredRef.current.style.border="0.5px solid black"
+        }
+    }
+    function clickHandlerTwo(){
+        if(values.textareaTwo===""){
+            textTwoRequiredRef.current.style.border="2px solid red"
+            textTwolableRef.current.style.display="block"
+        }
+        else{
+            textTwoRequiredRef.current.style.border="0.5px solid black"
+        }
+    }
+
+    function clickHandlerThree(){
+        if(values.textareaThree===""){
+            textThreeRequiredRef.current.style.border="2px solid red"
+            textThreelableRef.current.style.display="block"
+        }
+        else{
+            textThreeRequiredRef.current.style.border="0.5px solid black"
+        }
+    }
+
 
 
 /**
@@ -112,55 +186,60 @@ function SubmitDashboard(){
                 </div> */}
                 <div className="submitName">
                     <img style={{position:"relative",width:"70px",height:"70px",borderRadius:"50px",bottom:"15px"}} src="https://image.shutterstock.com/image-photo/close-portrait-smiling-handsome-man-600w-1011569245.jpg" alt="Profile Photo"/ >
-                    <span style={{position:"relative",left:"10px",bottom:"45px"}}>Akash Mishra</span>
+                    <span style={{position:"absolute",left:"140px",top:"35px",}}>Akash Mishra</span>
                 </div>
 
                 <div class="submitLogout">
-                    <button style={logoutButtonStyleTwo} onClick={handleLogout}>Logout</button>
+                    <Button style={logoutButtonStyleTwo} variant="danger" size="lg" onClick={handleLogout}>Logout</Button>
                 </div>
 
             </div>
 
-            <div>
-                    {/* <h1>Hello</h1> */}
+            {/* <div>
+                    <h1>Hello</h1>
                     <h1>{localStorage.feedbackResponseTwo}</h1>
-            </div>
+            </div> */}
 
             <div>
 
-                <div className="submitFeedbackGrid">
+                { !((localStorage.feedbackResponseTwo)==="You do not have any receiver name to give feedback") ?
 
-                    <div className="submitOne">
-                        <div>
-                        <img style={{width:"70px",height:"70px",borderRadius:"50px",marginTop:"60px"}} src="https://www.yourtango.com/sites/default/files/image_blog/types-guys-who-stay-single-men.jpg" alt="Profile Photo"/ >
-                        </div>
-                        <div>
-                            <textarea style={submitFeedbackStyleTextarea} rows="3" cols="43"></textarea>
-                            <button style={submitFeedbackStyleOneButton}>Submit Feedback</button>
-                        </div>
-                    </div>
+                    <div className="submitFeedbackGrid">
 
-                    <div className="submitTwo">
-                    <div>
-                        <img style={{width:"70px",height:"70px",borderRadius:"50px",marginTop:"60px"}} src="https://media.vanityfair.com/photos/5df908e81216ae00085d37dc/9:16/w_749,h_1333,c_limit/little-women-man-problem-b.jpg" alt="Profile Photo"/ >
+                        <div className="submitOne">
+                            <div>
+                            <img style={{width:"70px",height:"70px",borderRadius:"50px",marginTop:"60px"}} src="https://www.yourtango.com/sites/default/files/image_blog/types-guys-who-stay-single-men.jpg" alt="Profile Photo"/ >
+                            </div>
+                            <div>
+                                <textarea ref={textOneRequiredRef} value={values.textareaOne} style={submitFeedbackStyleTextarea} onChange={changeHandlerOne} onBlur={clickHandlerOne} rows="2" cols="43" ></textarea>
+                                <label ref={textOnelableRef} style={{color:"red", display:"none",float:"left",position:"absolute",top:"410px",left:"88px"}}>** this field must have value</label>
+                                <Button style={submitFeedbackStyleOneButton} variant="primary" size="lg" onClick={clickHandlerOne}>Submit Feedback</Button>
+                            </div>
                         </div>
-                        <div>
-                            <textarea style={submitFeedbackStyleTextarea} rows="3" cols="43"></textarea>
-                            <button style={submitFeedbackStyleTwoButton}>Submit Feedback</button>
-                        </div>
-                    </div>
 
-                    <div className="submitThree">
-                    <div>
-                        <img style={{width:"70px",height:"70px",borderRadius:"50px",marginTop:"60px"}} src="https://image.shutterstock.com/image-photo/close-portrait-smiling-handsome-man-600w-1011569245.jpg" alt="Profile Photo"/ >
-                        </div>
+                        <div className="submitTwo">
                         <div>
-                            <textarea style={submitFeedbackStyleTextarea} rows="3" cols="43"></textarea>
-                            <button style={submitFeedbackStyleThreeButton}>Submit Feedback</button>
+                            <img style={{width:"70px",height:"70px",borderRadius:"50px",marginTop:"60px"}} src="https://www.yourtango.com/sites/default/files/image_blog/types-guys-who-stay-single-men.jpg" alt="Profile Photo"/ >
+                            </div>
+                            <div>
+                                <textarea ref={textTwoRequiredRef} value={values.textareaTwo} style={submitFeedbackStyleTextarea} onChange={changeHandlerTwo} onBlur={clickHandlerTwo} rows="2" cols="43" ></textarea>
+                                <label ref={textTwolableRef} style={{color:"red", display:"none",float:"left",position:"absolute",top:"410px",left:"517px"}}>** this field must have value</label>
+                                <Button style={submitFeedbackStyleTwoButton} variant="primary" size="lg" onClick={clickHandlerTwo}>Submit Feedback</Button>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                        <div className="submitThree">
+                        <div>
+                            <img style={{width:"70px",height:"70px",borderRadius:"50px",marginTop:"60px"}} src="https://image.shutterstock.com/image-photo/close-portrait-smiling-handsome-man-600w-1011569245.jpg" alt="Profile Photo"/ >
+                            </div>
+                            <div>
+                                <textarea ref={textThreeRequiredRef} value={values.textareaThree} style={submitFeedbackStyleTextarea} onChange={changeHandlerThree} onBlur={clickHandlerThree} rows="2" cols="43" ></textarea>
+                                <label ref={textThreelableRef} style={{color:"red", display:"none",float:"left",position:"absolute",top:"410px",left:"947px"}}>** this field must have value</label>
+                                <Button style={submitFeedbackStyleThreeButton} variant="primary" size="lg" onClick={clickHandlerThree}>Submit Feedback</Button>
+                            </div>
+                        </div> 
+
+                </div>:<h1>{localStorage.feedbackResponseTwo}</h1> }
 
             </div>
 
